@@ -1,0 +1,2002 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>YOUSIVAR–Ω — Beyond Intelligence. Beyond Limits.</title>
+<meta name="description" content="YOUSIVAR–Ω — an advanced AI platform. Beyond Intelligence. Beyond Limits." />
+<meta property="og:image" content="https://bolt.new/static/og_default.png" />
+<meta name="theme-color" content="#060709" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23c0c0c0'%3EΩ%3C/text%3E%3C/svg%3E" />
+
+<style>
+/* ================================================================
+   YOUSIVAR–Ω — Luxury AI Product Showcase
+   Single-file implementation — embedded CSS
+   ================================================================ */
+
+/* --- Design Tokens --- */
+:root {
+  --bg-void:        #060709;
+  --bg-graphite:    #0d0e12;
+  --bg-elevated:    #16171c;
+  --bg-glass:       rgba(214,214,222,0.035);
+  --bg-glass-hover: rgba(214,214,222,0.065);
+  --border-subtle:  rgba(214,214,222,0.09);
+  --border-refined: rgba(214,214,222,0.14);
+  --border-bright:  rgba(214,214,222,0.26);
+
+  --text-primary:   #f2f2f5;
+  --text-secondary: #aeafb8;
+  --text-muted:     #6c6d77;
+  --text-faint:     #4d4e57;
+
+  --accent-silver:  #d6d6de;
+  --accent-ice:     #8caacd;
+  --accent-gold:    #cbb089;
+  --accent-platinum: #e8e8ee;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  --font-arabic: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+
+  --space-unit: 8px;
+  --max-width: 1200px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent-ice); outline-offset: 3px; }
+
+/* --- Utility --- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+[dir="rtl"] { text-align: right; direction: rtl; font-family: var(--font-arabic); }
+
+/* --- Ambient Background --- */
+#ambient-light {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 15%, rgba(140,170,205,0.07), transparent 70%),
+    radial-gradient(ellipse 500px 300px at 80% 85%, rgba(203,176,137,0.045), transparent 70%);
+}
+#mouse-glow {
+  position: fixed; width: 600px; height: 600px; z-index: 1; pointer-events: none;
+  background: radial-gradient(circle, rgba(140,170,205,0.05), transparent 60%);
+  transform: translate(-50%, -50%); transition: opacity 0.4s;
+  opacity: 0; will-change: transform;
+}
+#grain-overlay {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ================================================================
+   CINEMATIC INTRO
+   ================================================================ */
+#intro-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg-void);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity 1s var(--ease-in-out), visibility 1s;
+}
+#intro-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+#intro-ambient {
+  position: absolute; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(140,170,205,0.08), transparent 50%);
+  animation: intro-pulse 3s var(--ease-in-out) infinite;
+}
+@keyframes intro-pulse {
+  0%,100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.intro-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; }
+#intro-logo {
+  width: 80px; height: 80px; margin: 0 auto 32px;
+  border-radius: 50%; border: 1px solid var(--border-refined);
+  overflow: hidden; opacity: 0; transform: scale(0.8);
+  animation: intro-logo-reveal 1.5s var(--ease-out) 0.3s forwards;
+}
+#intro-logo img { width: 100%; height: 100%; object-fit: contain; }
+@keyframes intro-logo-reveal {
+  to { opacity: 1; transform: scale(1); }
+}
+
+#intro-name {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 400; letter-spacing: 0.15em; color: var(--text-primary);
+  opacity: 0; transform: translateY(20px);
+  animation: intro-text-up 1.2s var(--ease-out) 0.8s forwards;
+}
+#intro-tagline {
+  font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--text-muted); margin-top: 16px;
+  opacity: 0; transform: translateY(15px);
+  animation: intro-text-up 1.2s var(--ease-out) 1.2s forwards;
+}
+@keyframes intro-text-up { to { opacity: 1; transform: translateY(0); } }
+
+#intro-enter {
+  margin-top: 48px; padding: 14px 36px;
+  border: 1px solid var(--border-refined); border-radius: var(--radius-md);
+  background: var(--bg-glass); color: var(--text-primary);
+  font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s var(--ease-out);
+  opacity: 0; animation: intro-text-up 1s var(--ease-out) 1.8s forwards;
+}
+#intro-enter:hover { background: var(--bg-glass-hover); border-color: var(--border-bright); }
+
+#intro-skip {
+  position: absolute; bottom: 32px; right: 32px;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); padding: 8px 16px;
+  transition: color 0.3s; z-index: 3;
+}
+#intro-skip:hover { color: var(--text-primary); }
+
+/* ================================================================
+   HEADER / NAV
+   ================================================================ */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+  background: rgba(5,5,6,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: padding 0.3s var(--ease-out);
+}
+header.scrolled { padding: 10px 24px; background: rgba(5,5,6,0.92); }
+
+.header-brand { display: flex; align-items: center; gap: 14px; }
+.header-logo {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border-refined); overflow: hidden; flex-shrink: 0;
+}
+.header-logo img { width: 100%; height: 100%; object-fit: contain; }
+.header-name {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 400;
+  letter-spacing: 0.08em; white-space: nowrap;
+}
+
+nav ul { display: flex; list-style: none; gap: 28px; }
+nav a {
+  font-size: 0.8rem; letter-spacing: 0.08em; color: var(--text-secondary);
+  transition: color 0.3s; position: relative; padding: 4px 0;
+}
+nav a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: var(--accent-ice); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+nav a:hover { color: var(--text-primary); }
+nav a:hover::after { transform: scaleX(1); }
+
+#mobile-menu-btn { display: none; width: 40px; height: 40px; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+#mobile-menu-btn span { width: 22px; height: 1.5px; background: var(--text-primary); transition: all 0.3s; }
+#mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+#mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+#mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+#mobile-nav {
+  position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
+  background: var(--bg-graphite); border-left: 1px solid var(--border-subtle);
+  z-index: 999; padding: 80px 24px 24px; transform: translateX(100%);
+  transition: transform 0.4s var(--ease-out); display: flex; flex-direction: column; gap: 8px;
+}
+#mobile-nav.open { transform: translateX(0); }
+#mobile-nav a {
+  font-size: 0.9rem; letter-spacing: 0.06em; padding: 14px 0;
+  border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary);
+  transition: color 0.3s, padding-left 0.3s;
+}
+#mobile-nav a:hover { color: var(--text-primary); padding-left: 8px; }
+
+/* --- Sound Toggle --- */
+#sound-toggle {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s; flex-shrink: 0;
+}
+#sound-toggle:hover { border-color: var(--border-bright); background: var(--bg-glass-hover); }
+#sound-toggle svg { width: 18px; height: 18px; stroke: var(--text-secondary); }
+#sound-toggle:hover svg { stroke: var(--text-primary); }
+
+/* ================================================================
+   HERO
+   ================================================================ */
+#hero {
+  position: relative; z-index: 3;
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px 0 80px; overflow: hidden;
+}
+.hero-bg-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 800px; height: 800px; z-index: -1;
+  background: radial-gradient(circle, rgba(140,170,205,0.08), transparent 60%);
+  animation: hero-glow-drift 8s var(--ease-in-out) infinite;
+}
+@keyframes hero-glow-drift {
+  0%,100% { transform: translate(-50%,-50%) scale(1); }
+  50% { transform: translate(-45%,-55%) scale(1.15); }
+}
+
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+.hero-text { max-width: 600px; }
+.hero-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent-ice); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent-ice); }
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 400; line-height: 1.1; letter-spacing: 0.02em; margin-bottom: 20px;
+}
+.hero-title .accent { color: var(--accent-silver); font-style: italic; }
+.hero-tagline {
+  font-size: 1.15rem; color: var(--text-secondary); line-height: 1.5;
+  margin-bottom: 24px; max-width: 480px;
+}
+.hero-desc {
+  font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
+  margin-bottom: 40px; max-width: 460px;
+}
+.hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: var(--radius-md);
+  font-size: 0.82rem; letter-spacing: 0.08em; font-weight: 500;
+  transition: all 0.3s var(--ease-out); white-space: nowrap; cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, rgba(214,214,222,0.13), rgba(214,214,222,0.035));
+  border: 1px solid var(--border-bright); color: var(--text-primary);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(214,214,222,0.20), rgba(214,214,222,0.08));
+  border-color: var(--accent-ice); transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(140,170,205,0.15);
+}
+.btn-secondary {
+  border: 1px solid var(--border-subtle); color: var(--text-secondary); background: transparent;
+}
+.btn-secondary:hover { border-color: var(--border-bright); color: var(--text-primary); background: var(--bg-glass); }
+.btn:disabled, .btn.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+.btn svg { width: 16px; height: 16px; }
+.btn-arrow { transition: transform 0.3s var(--ease-out); }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* --- Hero Visual --- */
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+.hero-visual-frame {
+  position: relative; width: 100%; max-width: 420px; aspect-ratio: 4/5;
+  border-radius: var(--radius-xl); overflow: hidden;
+  border: 1px solid var(--border-refined);
+  background: var(--bg-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: hero-frame-float 6s var(--ease-in-out) infinite;
+}
+@keyframes hero-frame-float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.hero-visual-frame img { width: 100%; height: 100%; object-fit: cover; }
+.hero-visual-frame::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(5,5,6,0.8));
+  pointer-events: none;
+}
+.hero-visual-label {
+  position: absolute; bottom: 24px; left: 24px; right: 24px; z-index: 2;
+  font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+.hero-visual-label .sub {
+  display: block; font-family: var(--font-body); font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px;
+}
+
+/* --- Scroll indicator --- */
+.scroll-indicator {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--text-muted); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); animation: scroll-line-anim 2s var(--ease-in-out) infinite; }
+@keyframes scroll-line-anim {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ================================================================
+   SECTION COMMON
+   ================================================================ */
+section { position: relative; z-index: 3; padding: 100px 0; }
+.section-label {
+  font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent-ice); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent-ice); }
+.section-title {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400; line-height: 1.2; margin-bottom: 20px; letter-spacing: 0.01em;
+}
+.section-subtitle { font-size: 1rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 60px; line-height: 1.6; }
+
+/* --- Reveal animation --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ================================================================
+   PRODUCT DESCRIPTION (Arabic + English)
+   ================================================================ */
+#description { background: var(--bg-graphite); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+.desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.desc-en h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; margin-bottom: 20px; }
+.desc-en p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+.desc-en .signature { font-family: var(--font-display); font-size: 1.1rem; color: var(--accent-silver); margin-top: 24px; font-style: italic; }
+
+.desc-ar { padding: 32px; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--bg-glass); }
+.desc-ar h3 { font-family: var(--font-arabic); font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; color: var(--text-primary); }
+.desc-ar p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 16px; }
+.desc-ar .signature { font-family: var(--font-arabic); font-size: 1.05rem; color: var(--accent-silver); margin-top: 24px; font-weight: 600; }
+
+/* ================================================================
+   PRODUCT PREVIEW
+   ================================================================ */
+#preview { background: var(--bg-void); }
+.preview-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.preview-desktop {
+  border-radius: var(--radius-lg); border: 1px solid var(--border-refined);
+  background: var(--bg-elevated); overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.preview-desktop-bar {
+  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle); background: rgba(214,214,222,0.02);
+}
+.preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+.preview-dot:nth-child(1) { background: #e06060; }
+.preview-dot:nth-child(2) { background: #e0b060; }
+.preview-dot:nth-child(3) { background: #60b070; }
+.preview-desktop-title { margin-left: 12px; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.08em; }
+
+.preview-desktop-body { padding: 20px; min-height: 340px; display: flex; flex-direction: column; }
+.preview-model-selector {
+  display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.preview-model-chip {
+  padding: 6px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);
+  font-size: 0.7rem; letter-spacing: 0.05em; color: var(--text-muted);
+  transition: all 0.3s; cursor: default;
+}
+.preview-model-chip.active { border-color: var(--accent-ice); color: var(--accent-ice); background: rgba(140,170,205,0.08); }
+
+.preview-conversation { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 8px 0; }
+.preview-msg { max-width: 80%; padding: 12px 16px; border-radius: var(--radius-md); font-size: 0.85rem; line-height: 1.6; }
+.preview-msg.user {
+  align-self: flex-end; background: rgba(140,170,205,0.12);
+  border: 1px solid rgba(140,170,205,0.2); color: var(--text-primary);
+}
+.preview-msg.ai {
+  align-self: flex-start; background: var(--bg-glass);
+  border: 1px solid var(--border-subtle); color: var(--text-secondary);
+}
+.preview-msg.ai .label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-ice); margin-bottom: 6px; }
+
+.preview-typing { display: flex; gap: 4px; align-items: center; padding: 8px 0; }
+.preview-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: typing-bounce 1.4s infinite; }
+.preview-typing span:nth-child(2) { animation-delay: 0.2s; }
+.preview-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-bounce {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+.preview-desktop-footer {
+  display: flex; gap: 8px; margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.preview-input-mock {
+  flex: 1; padding: 10px 14px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle); background: var(--bg-glass);
+  font-size: 0.8rem; color: var(--text-muted);
+}
+.preview-send-mock {
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  background: rgba(140,170,205,0.15); border: 1px solid rgba(140,170,205,0.25);
+  font-size: 0.75rem; color: var(--accent-ice);
+}
+
+/* Mobile preview */
+.preview-mobile {
+  width: 220px; margin: 0 auto; border-radius: 28px;
+  border: 2px solid var(--border-bright); background: var(--bg-elevated);
+  padding: 12px 10px; box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  position: relative;
+}
+.preview-mobile::before {
+  content: ''; position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+  width: 50px; height: 4px; border-radius: 2px; background: var(--border-bright);
+}
+.preview-mobile-screen { margin-top: 24px; padding: 12px; min-height: 320px; display: flex; flex-direction: column; gap: 10px; }
+.preview-mobile-header {
+  font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-muted);
+  text-align: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);
+}
+.preview-mobile-msg { font-size: 0.72rem; padding: 8px 10px; border-radius: var(--radius-sm); line-height: 1.5; }
+.preview-mobile-msg.user { align-self: flex-end; background: rgba(140,170,205,0.12); color: var(--text-primary); }
+.preview-mobile-msg.ai { align-self: flex-start; background: var(--bg-glass); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+.preview-mobile-typing { display: flex; gap: 3px; padding: 4px 0; }
+.preview-mobile-typing span { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); animation: typing-bounce 1.4s infinite; }
+.preview-mobile-typing span:nth-child(2) { animation-delay: 0.2s; }
+.preview-mobile-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+.preview-caption {
+  margin-top: 24px; font-size: 0.75rem; color: var(--text-muted);
+  text-align: center; letter-spacing: 0.05em;
+}
+
+/* ================================================================
+   INTERACTIVE CHAT PREVIEW
+   ================================================================ */
+#chat-preview { background: var(--bg-graphite); border-top: 1px solid var(--border-subtle); }
+.chat-demo-wrapper { max-width: 700px; margin: 0 auto; }
+.chat-demo {
+  border-radius: var(--radius-lg); border: 1px solid var(--border-refined);
+  background: var(--bg-elevated); overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+.chat-demo-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; border-bottom: 1px solid var(--border-subtle);
+}
+.chat-demo-header .title { font-size: 0.8rem; letter-spacing: 0.1em; color: var(--text-secondary); }
+.chat-demo-header .badge {
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent-gold); padding: 4px 10px; border: 1px solid rgba(203,176,137,0.3);
+  border-radius: var(--radius-sm); background: rgba(203,176,137,0.05);
+}
+.chat-demo-body { padding: 24px 20px; min-height: 280px; max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+.chat-demo-body::-webkit-scrollbar { width: 4px; }
+.chat-demo-body::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 2px; }
+
+.chat-msg { max-width: 85%; padding: 14px 18px; border-radius: var(--radius-md); font-size: 0.88rem; line-height: 1.65; }
+.chat-msg.user { align-self: flex-end; background: rgba(140,170,205,0.12); border: 1px solid rgba(140,170,205,0.2); color: var(--text-primary); }
+.chat-msg.ai { align-self: flex-start; background: var(--bg-glass); border: 1px solid var(--border-subtle); color: var(--text-secondary); }
+.chat-msg.ai .sender { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-ice); margin-bottom: 8px; }
+.chat-msg .cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent-ice); margin-left: 2px; vertical-align: text-bottom; animation: cursor-blink 0.8s infinite; }
+@keyframes cursor-blink { 50% { opacity: 0; } }
+
+.chat-thinking { align-self: flex-start; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: var(--radius-md); background: var(--bg-glass); border: 1px solid var(--border-subtle); }
+.chat-thinking .label { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-muted); }
+.chat-thinking .dots { display: flex; gap: 4px; }
+.chat-thinking .dots span { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-ice); animation: thinking-pulse 1.4s infinite; }
+.chat-thinking .dots span:nth-child(2) { animation-delay: 0.2s; }
+.chat-thinking .dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes thinking-pulse {
+  0%,100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.chat-demo-footer { display: flex; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--border-subtle); }
+.chat-demo-input {
+  flex: 1; padding: 12px 16px; border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle); background: var(--bg-glass);
+  color: var(--text-primary); font-size: 0.85rem; font-family: inherit;
+  transition: border-color 0.3s;
+}
+.chat-demo-input:focus { outline: none; border-color: var(--accent-ice); }
+.chat-demo-input::placeholder { color: var(--text-faint); }
+.chat-demo-send {
+  padding: 12px 24px; border-radius: var(--radius-md);
+  background: rgba(140,170,205,0.15); border: 1px solid rgba(140,170,205,0.25);
+  color: var(--accent-ice); font-size: 0.78rem; letter-spacing: 0.05em;
+  transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+}
+.chat-demo-send:hover { background: rgba(140,170,205,0.25); border-color: var(--accent-ice); }
+.chat-demo-send:disabled { opacity: 0.4; cursor: not-allowed; }
+.chat-demo-send svg { width: 16px; height: 16px; }
+
+.chat-demo-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+.chat-demo-reset {
+  font-size: 0.75rem; letter-spacing: 0.08em; color: var(--text-muted);
+  padding: 8px 16px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+}
+.chat-demo-reset:hover { color: var(--text-primary); border-color: var(--border-bright); }
+.chat-demo-reset svg { width: 14px; height: 14px; }
+.chat-demo-note { font-size: 0.7rem; color: var(--text-faint); letter-spacing: 0.05em; }
+
+/* ================================================================
+   FEATURE EXPLORER
+   ================================================================ */
+#features { background: var(--bg-void); }
+.feature-explorer { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+.feature-tabs { display: flex; flex-direction: column; gap: 4px; position: sticky; top: 90px; }
+.feature-tab {
+  padding: 14px 18px; border-radius: var(--radius-md);
+  font-size: 0.82rem; letter-spacing: 0.05em; color: var(--text-muted);
+  text-align: left; transition: all 0.3s var(--ease-out);
+  border: 1px solid transparent; display: flex; align-items: center; gap: 12px; width: 100%;
+}
+.feature-tab svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.6; transition: opacity 0.3s; }
+.feature-tab:hover { color: var(--text-secondary); background: var(--bg-glass); }
+.feature-tab.active { color: var(--text-primary); background: var(--bg-glass); border-color: var(--border-refined); }
+.feature-tab.active svg { opacity: 1; color: var(--accent-ice); }
+
+.feature-panel {
+  padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+  background: var(--bg-glass); min-height: 320px;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.feature-panel-content { opacity: 0; transform: translateY(10px); transition: all 0.5s var(--ease-out); }
+.feature-panel-content.visible { opacity: 1; transform: translateY(0); }
+.feature-panel h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin-bottom: 16px; }
+.feature-panel p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+.feature-list { display: flex; flex-direction: column; gap: 12px; }
+.feature-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  border-radius: var(--radius-sm); background: rgba(214,214,222,0.02);
+  border: 1px solid var(--border-subtle); transition: all 0.3s;
+}
+.feature-item:hover { background: var(--bg-glass-hover); border-color: var(--border-refined); }
+.feature-item .icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--accent-ice); }
+.feature-item .name { font-size: 0.85rem; color: var(--text-primary); flex: 1; }
+.feature-item .status {
+  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: var(--radius-sm); white-space: nowrap;
+}
+.status-available { background: rgba(96,176,112,0.12); color: #60b070; border: 1px solid rgba(96,176,112,0.25); }
+.status-configured { background: rgba(140,170,205,0.12); color: var(--accent-ice); border: 1px solid rgba(140,170,205,0.25); }
+.status-demo { background: rgba(203,176,137,0.12); color: var(--accent-gold); border: 1px solid rgba(203,176,137,0.25); }
+.status-planned { background: rgba(214,214,222,0.04); color: var(--text-muted); border: 1px solid var(--border-subtle); }
+.status-requires { background: rgba(224,96,96,0.08); color: #e08080; border: 1px solid rgba(224,96,96,0.2); }
+
+/* ================================================================
+   ROADMAP
+   ================================================================ */
+#roadmap { background: var(--bg-graphite); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+.roadmap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.roadmap-column {
+  border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+  background: var(--bg-glass); padding: 24px; transition: all 0.3s;
+}
+.roadmap-column:hover { border-color: var(--border-refined); transform: translateY(-4px); }
+.roadmap-column-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle); }
+.roadmap-column-header .dot { width: 8px; height: 8px; border-radius: 50%; }
+.roadmap-column-header .title { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.roadmap-column.available .dot { background: #60b070; }
+.roadmap-column.dev .dot { background: var(--accent-gold); }
+.roadmap-column.planned .dot { background: var(--text-muted); }
+.roadmap-column.external .dot { background: #e08080; }
+.roadmap-items { display: flex; flex-direction: column; gap: 10px; }
+.roadmap-item { font-size: 0.8rem; color: var(--text-secondary); padding: 10px 12px; border-radius: var(--radius-sm); background: rgba(214,214,222,0.02); border: 1px solid var(--border-subtle); line-height: 1.5; }
+
+/* ================================================================
+   SCREEN RECORDING SHOWCASE
+   ================================================================ */
+#video-section { background: var(--bg-void); }
+.video-showcase { max-width: 900px; margin: 0 auto; }
+.video-frame {
+  position: relative; border-radius: var(--radius-lg); border: 1px solid var(--border-refined);
+  background: var(--bg-elevated); overflow: hidden; aspect-ratio: 16/9;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.video-placeholder {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px; padding: 24px; text-align: center;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-graphite));
+}
+.video-placeholder .icon-wrap {
+  width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--border-refined);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-glass); transition: all 0.3s;
+}
+.video-placeholder:hover .icon-wrap { border-color: var(--accent-ice); transform: scale(1.05); }
+.video-placeholder .icon-wrap svg { width: 32px; height: 32px; color: var(--text-secondary); }
+.video-placeholder h4 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: var(--text-secondary); }
+.video-placeholder p { font-size: 0.8rem; color: var(--text-muted); max-width: 400px; line-height: 1.6; }
+.video-placeholder .config-hint {
+  font-size: 0.7rem; color: var(--text-faint); margin-top: 8px;
+  font-family: var(--font-mono); letter-spacing: 0.03em;
+}
+#video-player { width: 100%; height: 100%; display: none; object-fit: cover; }
+#video-player.active { display: block; }
+
+.video-controls {
+  display: flex; align-items: center; gap: 16px; padding: 16px 20px;
+  border-top: 1px solid var(--border-subtle); background: rgba(214,214,222,0.02);
+}
+.video-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+}
+.video-btn:hover { border-color: var(--border-bright); background: var(--bg-glass-hover); }
+.video-btn svg { width: 16px; height: 16px; color: var(--text-secondary); }
+.video-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.video-caption { flex: 1; font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.03em; }
+
+/* ================================================================
+   CALLS TO ACTION
+   ================================================================ */
+#cta-section { background: var(--bg-graphite); border-top: 1px solid var(--border-subtle); }
+.cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: 0 auto; }
+.cta-card {
+  padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+  background: var(--bg-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s var(--ease-out); display: flex; flex-direction: column; gap: 16px;
+  text-align: center; align-items: center;
+}
+.cta-card:hover { border-color: var(--border-refined); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+.cta-card .icon {
+  width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--border-refined);
+  display: flex; align-items: center; justify-content: center; background: var(--bg-glass);
+}
+.cta-card .icon svg { width: 24px; height: 24px; color: var(--accent-silver); }
+.cta-card h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; }
+.cta-card .desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+.cta-card[dir="rtl"] .cta-btn-label { font-family: var(--font-arabic); font-size: 0.9rem; }
+
+.cta-btn {
+  width: 100%; padding: 12px 20px; border-radius: var(--radius-md);
+  font-size: 0.82rem; letter-spacing: 0.03em; transition: all 0.3s var(--ease-out);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.cta-btn svg { width: 16px; height: 16px; }
+.cta-btn.filled { background: linear-gradient(135deg, rgba(214,214,222,0.13), rgba(214,214,222,0.035)); border: 1px solid var(--border-bright); color: var(--text-primary); }
+.cta-btn.filled:hover { background: linear-gradient(135deg, rgba(214,214,222,0.20), rgba(214,214,222,0.08)); border-color: var(--accent-ice); }
+.cta-btn.outlined { border: 1px solid var(--border-subtle); color: var(--text-secondary); }
+.cta-btn.outlined:hover { border-color: var(--border-bright); color: var(--text-primary); background: var(--bg-glass); }
+.cta-btn.disabled-state { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+.cta-status-badge {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: var(--radius-sm); color: var(--accent-gold);
+  background: rgba(203,176,137,0.08); border: 1px solid rgba(203,176,137,0.2);
+}
+
+/* ================================================================
+   DEVELOPER PROFILE
+   ================================================================ */
+#developer { background: var(--bg-void); position: relative; overflow: hidden; }
+.dev-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; z-index: 0;
+  background: radial-gradient(circle, rgba(214,214,222,0.06), transparent 60%);
+  animation: dev-glow-pulse 6s var(--ease-in-out) infinite;
+}
+@keyframes dev-glow-pulse {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+}
+.dev-content { position: relative; z-index: 1; text-align: center; max-width: 600px; margin: 0 auto; }
+.dev-label {
+  font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent-ice); margin-bottom: 24px;
+}
+.dev-name {
+  font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400; letter-spacing: 0.03em; margin-bottom: 20px;
+  background: linear-gradient(135deg, #f4f4f7, #d6d6de 55%, #8caacd);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.dev-role { font-size: 0.9rem; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 32px; }
+.dev-divider { width: 60px; height: 1px; background: var(--border-bright); margin: 0 auto 32px; }
+.dev-bio { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; max-width: 480px; margin: 0 auto; }
+.dev-contact-row { display: flex; gap: 12px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+.dev-contact-btn {
+  padding: 10px 22px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
+  font-size: 0.78rem; letter-spacing: 0.05em; color: var(--text-secondary);
+  transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+}
+.dev-contact-btn:hover { border-color: var(--border-bright); color: var(--text-primary); background: var(--bg-glass); }
+.dev-contact-btn svg { width: 16px; height: 16px; }
+
+/* ================================================================
+   SOCIAL DIRECTORY
+   ================================================================ */
+#social { background: var(--bg-graphite); border-top: 1px solid var(--border-subtle); }
+.social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.social-card {
+  padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
+  background: var(--bg-glass); transition: all 0.3s var(--ease-out);
+  display: flex; align-items: center; gap: 14px;
+}
+.social-card:hover { border-color: var(--border-bright); background: var(--bg-glass-hover); transform: translateY(-2px); }
+.social-card .icon {
+  width: 40px; height: 40px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: rgba(214,214,222,0.03); transition: all 0.3s;
+}
+.social-card:hover .icon { border-color: var(--accent-ice); }
+.social-card .icon svg { width: 20px; height: 20px; color: var(--text-secondary); transition: color 0.3s; }
+.social-card:hover .icon svg { color: var(--accent-ice); }
+.social-card .info { flex: 1; min-width: 0; }
+.social-card .platform { font-size: 0.82rem; color: var(--text-primary); font-weight: 500; }
+.social-card .handle { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+
+/* Email cards */
+.email-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 32px; }
+.email-card {
+  padding: 20px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
+  background: var(--bg-glass); transition: all 0.3s; display: flex; align-items: center; gap: 14px;
+}
+.email-card:hover { border-color: var(--border-bright); background: var(--bg-glass-hover); }
+.email-card .icon {
+  width: 40px; height: 40px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.email-card .icon svg { width: 20px; height: 20px; color: var(--text-secondary); }
+.email-card .info { flex: 1; }
+.email-card .label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.email-card .address { font-size: 0.85rem; color: var(--text-primary); margin-top: 2px; font-family: var(--font-mono); }
+
+/* ================================================================
+   TECH BADGES
+   ================================================================ */
+#badges { background: var(--bg-void); }
+.badges-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.badge {
+  padding: 10px 20px; border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle); background: rgba(214,214,222,0.025);
+  font-size: 0.75rem; letter-spacing: 0.08em; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 8px; transition: all 0.3s;
+}
+.badge:hover { border-color: var(--border-bright); color: var(--text-primary); }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+.badge.active .dot { background: #60b070; box-shadow: 0 0 8px rgba(96,176,112,0.4); }
+.badge.planned .dot { background: var(--text-muted); }
+.badge.partial .dot { background: var(--accent-gold); }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer { background: var(--bg-graphite); border-top: 1px solid var(--border-subtle); padding: 60px 0 40px; position: relative; z-index: 3; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.footer-brand .name { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.08em; margin-bottom: 8px; }
+.footer-brand .tagline { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em; }
+.footer-brand .ar-sig { font-family: var(--font-arabic); font-size: 0.85rem; color: var(--accent-silver); margin-top: 12px; direction: rtl; }
+
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 0.8rem; color: var(--text-muted); transition: color 0.3s; }
+.footer-links a:hover { color: var(--text-primary); }
+
+.footer-bottom {
+  margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-subtle);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.03em; }
+.footer-omega { font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-silver); opacity: 0.5; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 968px) {
+  nav { display: none; }
+  #mobile-menu-btn { display: flex; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-cta-row { justify-content: center; }
+  .hero-visual { order: -1; }
+  .hero-visual-frame { max-width: 320px; }
+  .desc-grid { grid-template-columns: 1fr; gap: 32px; }
+  .preview-grid { grid-template-columns: 1fr; gap: 40px; }
+  .feature-explorer { grid-template-columns: 1fr; gap: 24px; }
+  .feature-tabs { position: static; flex-direction: row; overflow-x: auto; padding-bottom: 8px; }
+  .feature-tab { white-space: nowrap; }
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  section { padding: 64px 0; }
+  #hero { padding: 100px 0 60px; }
+  .hero-visual-frame { max-width: 260px; }
+  .roadmap-grid { grid-template-columns: 1fr; }
+  .social-grid { grid-template-columns: 1fr; }
+  .email-grid { grid-template-columns: 1fr; }
+  .badges-row { gap: 8px; }
+  .badge { padding: 8px 14px; font-size: 0.7rem; }
+  #intro-skip { bottom: 20px; right: 20px; }
+  .chat-demo-body { min-height: 240px; max-height: 320px; }
+  .feature-panel { padding: 20px; }
+  .cta-card { padding: 24px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  #mouse-glow { display: none; }
+  .hero-bg-glow, .dev-glow { animation: none; }
+  .hero-visual-frame { animation: none; }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* --- Safe area --- */
+@supports (padding: max(0px)) {
+  header { padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+  .container { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient layers -->
+<div id="ambient-light" aria-hidden="true"></div>
+<div id="mouse-glow" aria-hidden="true"></div>
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- ================================================================
+     CINEMATIC INTRO
+     ================================================================ -->
+<div id="intro-overlay" role="dialog" aria-label="Cinematic introduction">
+  <div id="intro-ambient" aria-hidden="true"></div>
+  <div class="intro-content">
+    <div id="intro-logo"><img src="https://i.postimg.cc/W1VnzMxt/OOO.png" alt="YOUSIVAR–Ω logo" /></div>
+    <h1 id="intro-name">YOUSIVAR–Ω</h1>
+    <p id="intro-tagline">Beyond Intelligence. Beyond Limits.</p>
+    <button id="intro-enter" type="button">Enter Experience</button>
+  </div>
+  <button id="intro-skip" type="button">Skip Intro</button>
+</div>
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
+<header id="header">
+  <div class="header-brand">
+    <div class="header-logo"><img src="https://i.postimg.cc/W1VnzMxt/OOO.png" alt="YOUSIVAR–Ω logo" /></div>
+    <span class="header-name">YOUSIVAR–Ω</span>
+  </div>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="#hero">Overview</a></li>
+      <li><a href="#description">About</a></li>
+      <li><a href="#preview">Preview</a></li>
+      <li><a href="#chat-preview">Demo</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#developer">Developer</a></li>
+      <li><a href="#social">Contact</a></li>
+    </ul>
+  </nav>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button id="sound-toggle" type="button" aria-label="Toggle sound" title="Toggle sound">
+      <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="display:none;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      </svg>
+      <svg id="sound-off-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      </svg>
+    </button>
+    <button id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+  <a href="#hero">Overview</a>
+  <a href="#description">About</a>
+  <a href="#preview">Preview</a>
+  <a href="#chat-preview">Demo</a>
+  <a href="#features">Features</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#developer">Developer</a>
+  <a href="#social">Contact</a>
+  <a href="#cta-section">Downloads</a>
+</div>
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section id="hero">
+  <div class="hero-bg-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <p class="hero-eyebrow">Advanced AI Platform</p>
+        <h1 class="hero-title">YOUSIVAR<span class="accent">–Ω</span></h1>
+        <p class="hero-tagline">Beyond Intelligence. Beyond Limits.</p>
+        <p class="hero-desc">An advanced AI platform that unifies intelligent models, integration flexibility, and a seamless experience into one exceptional ecosystem — designed for deeper control, broader possibilities, and limitless creativity.</p>
+        <div class="hero-cta-row">
+          <a href="#preview" class="btn btn-primary">Explore Preview <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
+          <a href="#chat-preview" class="btn btn-secondary">Try Demo</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="hero-visual-frame">
+          <img src="https://i.postimg.cc/W1VnzMxt/OOO.png" alt="YOUSIVAR–Ω brand visual" loading="eager" />
+          <div class="hero-visual-label">
+            YOUSIVAR–Ω
+            <span class="sub">Beyond Intelligence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PRODUCT DESCRIPTION
+     ================================================================ -->
+<section id="description">
+  <div class="container">
+    <p class="section-label reveal">Product</p>
+    <h2 class="section-title reveal">The Platform</h2>
+    <p class="section-subtitle reveal">A unified AI ecosystem designed for depth, flexibility, and refined experience.</p>
+    <div class="desc-grid">
+      <div class="desc-en reveal">
+        <h3>YOUSIVAR–Ω — Beyond Intelligence. Beyond Limits.</h3>
+        <p>YOUSIVAR–Ω is an advanced AI platform that brings together the power of intelligent models, integration flexibility, and experience fluidity into one exceptional ecosystem. It is designed to give you deeper control, broader capabilities, and limitless creativity — through a refined interface and advanced technologies that redefine how you interact with artificial intelligence.</p>
+        <p class="signature">YOUSIVAR–Ω — Where the power of intelligence meets the elegance of design.</p>
+      </div>
+      <div class="desc-ar reveal" dir="rtl" lang="ar">
+        <h3>YOUSIVAR–Ω — ما وراء الذكاء. ما وراء الحدود.</h3>
+        <p>منصة ذكاء اصطناعي متقدمة تجمع قوة النماذج الذكية، ومرونة التكامل، وسلاسة التجربة في منظومة واحدة استثنائية. صُممت لتمنحك تحكماً أعمق، وإمكانات أوسع، وإبداعاً بلا حدود، عبر واجهة راقية وتقنيات متطورة تعيد تعريف طريقة تفاعلك مع الذكاء الاصطناعي.</p>
+        <p class="signature">𝐘𝐎𝐔𝐒𝐈𝐕𝐀𝐑–Ω — حيث تلتقي قوة الذكاء بفخامة التصميم.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PRODUCT PREVIEW
+     ================================================================ -->
+<section id="preview">
+  <div class="container">
+    <p class="section-label reveal">Showcase</p>
+    <h2 class="section-title reveal">Application Preview</h2>
+    <p class="section-subtitle reveal">An interactive demonstration of the YOUSIVAR–Ω interface. This is a simulated preview, not a live connection to the application backend.</p>
+    <div class="preview-grid">
+      <div class="preview-desktop reveal">
+        <div class="preview-desktop-bar">
+          <span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span>
+          <span class="preview-desktop-title">YOUSIVAR–Ω — Desktop Interface</span>
+        </div>
+        <div class="preview-desktop-body">
+          <div class="preview-model-selector">
+            <span class="preview-model-chip active">GPT-4o</span>
+            <span class="preview-model-chip">Claude 3.5</span>
+            <span class="preview-model-chip">Gemini Pro</span>
+            <span class="preview-model-chip">Llama 3.1</span>
+            <span class="preview-model-chip">+ 12 more</span>
+          </div>
+          <div class="preview-conversation">
+            <div class="preview-msg user">Explain the architecture of a multi-model AI gateway.</div>
+            <div class="preview-msg ai">
+              <div class="label">YOUSIVAR–Ω</div>
+              A multi-model AI gateway acts as a unified layer between your application and multiple AI providers. It routes requests, manages virtual API keys, balances load across providers, and tracks usage — all through a single consistent API endpoint.
+            </div>
+            <div class="preview-typing" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+          <div class="preview-desktop-footer">
+            <div class="preview-input-mock">Ask anything, or attach a file…</div>
+            <div class="preview-send-mock">Send</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="preview-mobile">
+          <div class="preview-mobile-screen">
+            <div class="preview-mobile-header">YOUSIVAR–Ω</div>
+            <div class="preview-mobile-msg user">Summarize this document</div>
+            <div class="preview-mobile-msg ai">The document outlines a multi-model architecture with unified routing, budget management, and streaming support.</div>
+            <div class="preview-mobile-typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="preview-mobile-msg user">Show me the key features</div>
+            <div class="preview-mobile-msg ai">Multi-model access, streaming responses, file attachments, conversation history, and advanced tools panel.</div>
+          </div>
+        </div>
+        <p class="preview-caption">Interactive Preview — Demonstration Only</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     INTERACTIVE CHAT PREVIEW
+     ================================================================ -->
+<section id="chat-preview">
+  <div class="container">
+    <p class="section-label reveal">Interactive</p>
+    <h2 class="section-title reveal">Live Chat Demonstration</h2>
+    <p class="section-subtitle reveal">A local, in-browser simulation of the YOUSIVAR–Ω chat experience. No backend connection — this is a demonstration only.</p>
+    <div class="chat-demo-wrapper reveal">
+      <div class="chat-demo">
+        <div class="chat-demo-header">
+          <span class="title">YOUSIVAR–Ω — Chat Preview</span>
+          <span class="badge">Demo</span>
+        </div>
+        <div class="chat-demo-body" id="chat-body" aria-live="polite">
+          <div class="chat-msg user" id="chat-initial-msg">
+            What makes YOUSIVAR–Ω different from other AI platforms?
+          </div>
+        </div>
+        <div class="chat-demo-footer">
+          <input type="text" class="chat-demo-input" id="chat-input" placeholder="Type a message or press Send to see the demo…" aria-label="Chat input" />
+          <button class="chat-demo-send" id="chat-send" type="button">
+            <span>Send</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="chat-demo-actions">
+        <button class="chat-demo-reset" id="chat-reset" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+          Reset Demo
+        </button>
+        <span class="chat-demo-note">Local simulation — no data sent to any server</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FEATURE EXPLORER
+     ================================================================ -->
+<section id="features">
+  <div class="container">
+    <p class="section-label reveal">Capabilities</p>
+    <h2 class="section-title reveal">Feature Explorer</h2>
+    <p class="section-subtitle reveal">Explore the capabilities of YOUSIVAR–Ω by category. Each section reflects the current implementation status.</p>
+    <div class="feature-explorer">
+      <div class="feature-tabs" role="tablist" id="feature-tabs">
+        <button class="feature-tab active" data-feature="ai-intelligence" role="tab" aria-selected="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 11.715l.007.007-.006-.006.006-.006-.007.007z" /></svg>
+          AI Intelligence
+        </button>
+        <button class="feature-tab" data-feature="model-routing" role="tab" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+          Model Routing
+        </button>
+        <button class="feature-tab" data-feature="developer-tools" role="tab" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+          Developer Tools
+        </button>
+        <button class="feature-tab" data-feature="attachments" role="tab" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l11.314-11.314a3 3 0 014.243 4.243L8.762 17.51a1.5 1.5 0 01-2.122-2.121l9.192-9.193" /></svg>
+          Attachments
+        </button>
+        <button class="feature-tab" data-feature="extensions" role="tab" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+          Advanced Extensions
+        </button>
+        <button class="feature-tab" data-feature="mobile" role="tab" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+          Mobile Experience
+        </button>
+      </div>
+      <div class="feature-panel reveal">
+        <div class="feature-panel-content visible" id="feature-panel-content"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     ROADMAP
+     ================================================================ -->
+<section id="roadmap">
+  <div class="container">
+    <p class="section-label reveal">Progress</p>
+    <h2 class="section-title reveal">Roadmap & Timeline</h2>
+    <p class="section-subtitle reveal">A transparent view of what is available, in development, planned, and what requires external configuration.</p>
+    <div class="roadmap-grid">
+      <div class="roadmap-column available reveal">
+        <div class="roadmap-column-header"><span class="dot"></span><span class="title">Available</span></div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">Multi-model AI access</div>
+          <div class="roadmap-item">Model selection interface</div>
+          <div class="roadmap-item">Streaming responses</div>
+          <div class="roadmap-item">Conversation history</div>
+          <div class="roadmap-item">Image & file attachments</div>
+          <div class="roadmap-item">Personal settings</div>
+          <div class="roadmap-item">Android application</div>
+        </div>
+      </div>
+      <div class="roadmap-column dev reveal">
+        <div class="roadmap-column-header"><span class="dot"></span><span class="title">In Development</span></div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">Advanced generation controls</div>
+          <div class="roadmap-item">Memory & notes system</div>
+          <div class="roadmap-item">Document analysis pipeline</div>
+          <div class="roadmap-item">Enhanced mobile interface</div>
+          <div class="roadmap-item">Conversation management tools</div>
+        </div>
+      </div>
+      <div class="roadmap-column planned reveal">
+        <div class="roadmap-column-header"><span class="dot"></span><span class="title">Planned</span></div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">Web search integration</div>
+          <div class="roadmap-item">Image generation tools</div>
+          <div class="roadmap-item">Audio processing</div>
+          <div class="roadmap-item">Retrieval-augmented generation</div>
+          <div class="roadmap-item">Data analysis workspace</div>
+          <div class="roadmap-item">Extensible plugin system</div>
+        </div>
+      </div>
+      <div class="roadmap-column external reveal">
+        <div class="roadmap-column-header"><span class="dot"></span><span class="title">Requires Configuration</span></div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">LiteLLM gateway setup</div>
+          <div class="roadmap-item">Virtual API key management</div>
+          <div class="roadmap-item">Provider integrations</div>
+          <div class="roadmap-item">Automated build & release workflows</div>
+          <div class="roadmap-item">Secret management</div>
+          <div class="roadmap-item">Load balancing configuration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SCREEN RECORDING SHOWCASE
+     ================================================================ -->
+<section id="video-section">
+  <div class="container">
+    <p class="section-label reveal">Video</p>
+    <h2 class="section-title reveal">Screen Recording Showcase</h2>
+    <p class="section-subtitle reveal">A cinematic video presentation of the YOUSIVAR–Ω application. A recording will appear here once it becomes available.</p>
+    <div class="video-showcase reveal">
+      <div class="video-frame">
+        <div class="video-placeholder" id="video-placeholder">
+          <div class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" /></svg>
+          </div>
+          <h4>Recording Coming Soon</h4>
+          <p>No screen recording has been provided yet. Once a recording URL is configured, it will play here automatically.</p>
+          <p class="config-hint">// config.videoUrl = null — configure to enable playback</p>
+        </div>
+        <video id="video-player" controls preload="none" aria-label="Application screen recording"></video>
+      </div>
+      <div class="video-controls">
+        <button class="video-btn" id="video-play-btn" type="button" disabled aria-label="Play video" title="Play">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></svg>
+        </button>
+        <button class="video-btn" id="video-fullscreen-btn" type="button" disabled aria-label="Fullscreen" title="Fullscreen">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>
+        </button>
+        <span class="video-caption">Application screen recording — awaiting source material</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CALLS TO ACTION
+     ================================================================ -->
+<section id="cta-section">
+  <div class="container">
+    <p class="section-label reveal">Actions</p>
+    <h2 class="section-title reveal">Get Started</h2>
+    <p class="section-subtitle reveal">Download the application, explore the source code, support the developer, or read the documentation.</p>
+    <div class="cta-grid">
+      <!-- Download App -->
+      <div class="cta-card reveal" dir="rtl" lang="ar">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" /></svg>
+        </div>
+        <h4>تحميل التطبيق</h4>
+        <p class="desc">حمّل تطبيق YOUSIVAR–Ω لأجهزة أندرويد</p>
+        <span class="cta-status-badge" id="apk-status">APK Coming Soon</span>
+        <button class="cta-btn filled disabled-state" id="download-btn" type="button" disabled>
+          <span class="cta-btn-label">تحميل التطبيق</span>
+        </button>
+      </div>
+      <!-- Source Code -->
+      <div class="cta-card reveal">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+        </div>
+        <h4>Source Code</h4>
+        <p class="desc">Explore the open-source repository</p>
+        <a class="cta-btn filled" id="source-btn" type="button" href="https://github.com/Yousef-Shaheen-1/-.git" target="_blank" rel="noopener noreferrer">
+          <span>المصدر البرمجي</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+        </a>
+      </div>
+      <!-- Support Developer -->
+      <div class="cta-card reveal" dir="rtl" lang="ar">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
+        </div>
+        <h4>ادعمني بفنجان قهوة ☕</h4>
+        <p class="desc">ادعم المطوّر لمواصلة التحسين والتطوير</p>
+        <span class="cta-status-badge" id="support-status">Coming Soon</span>
+        <button class="cta-btn outlined disabled-state" id="support-btn" type="button" disabled>
+          <span class="cta-btn-label">ادعمني بفنجان قهوة ☕</span>
+        </button>
+      </div>
+      <!-- Documentation -->
+      <div class="cta-card reveal">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+        </div>
+        <h4>Documentation</h4>
+        <p class="desc">Documentation and licensing information</p>
+        <a class="cta-btn outlined" id="docs-btn" type="button" href="https://github.com/Yousef-Shaheen-1/-.git" target="_blank" rel="noopener noreferrer">
+          <span>Documentation and Licensing Page</span>
+          <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     DEVELOPER PROFILE
+     ================================================================ -->
+<section id="developer">
+  <div class="dev-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="dev-content reveal">
+      <p class="dev-label">Developer</p>
+      <h2 class="dev-name">Yousef Z. A. Shaheen</h2>
+      <p class="dev-role">Creator & Lead Developer — YOUSIVAR–Ω</p>
+      <div class="dev-divider"></div>
+      <p class="dev-bio">The architect behind YOUSIVAR–Ω. A developer dedicated to building refined, intelligent experiences that bridge advanced AI capabilities with elegant design — creating tools that empower users beyond conventional limits.</p>
+      <div class="dev-contact-row">
+        <a href="mailto:shaheen.group000@gmail.com" class="dev-contact-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+          Contact
+        </a>
+        <a href="#social" class="dev-contact-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.244m.15-2.9L8.91 14.256A9.38 9.38 0 018.285 14a9.337 9.337 0 01-4.121-.952 4.125 4.125 0 017.533-2.244M15 19.128v-.003c0-1.113-.285-2.16-.783-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a9.38 9.38 0 01.783-3.07m3.07-2.9L5.91 14.256a9.38 9.38 0 01-.783-.072m6.374 3.07l2.842-2.843a9.38 9.38 0 00.783-.072" /></svg>
+          All Channels
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     SOCIAL DIRECTORY
+     ================================================================ -->
+<section id="social">
+  <div class="container">
+    <p class="section-label reveal">Connect</p>
+    <h2 class="section-title reveal">Social Directory</h2>
+    <p class="section-subtitle reveal">Reach out across any platform. All links open in a new tab.</p>
+    <div class="social-grid" id="social-grid"></div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:400;margin-top:48px;margin-bottom:20px;" class="reveal">Email</h3>
+    <div class="email-grid" id="email-grid"></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TECH BADGES
+     ================================================================ -->
+<section id="badges">
+  <div class="container">
+    <p class="section-label reveal">Stack</p>
+    <h2 class="section-title reveal">Technology</h2>
+    <p class="section-subtitle reveal">A factual overview of the platform's technology and architecture.</p>
+    <div class="badges-row reveal">
+      <span class="badge active"><span class="dot"></span>AI Platform</span>
+      <span class="badge active"><span class="dot"></span>Multi-Model Architecture</span>
+      <span class="badge active"><span class="dot"></span>Streaming Interface</span>
+      <span class="badge partial"><span class="dot"></span>Extensible Integrations</span>
+      <span class="badge active"><span class="dot"></span>Developer-Centric</span>
+      <span class="badge active"><span class="dot"></span>Android Application</span>
+      <span class="badge active"><span class="dot"></span>Open-Source Repository</span>
+      <span class="badge active"><span class="dot"></span>Responsive Experience</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">YOUSIVAR–Ω</div>
+        <div class="tagline">Beyond Intelligence. Beyond Limits.</div>
+        <div class="ar-sig" dir="rtl" lang="ar">𝐘𝐎𝐔𝐒𝐈𝐕𝐀𝐑–Ω — حيث تلتقي قوة الذكاء بفخامة التصميم.</div>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Overview</a>
+        <a href="#description">About</a>
+        <a href="#preview">Preview</a>
+        <a href="#chat-preview">Demo</a>
+        <a href="#features">Features</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#developer">Developer</a>
+        <a href="#social">Contact</a>
+        <a href="https://github.com/Yousef-Shaheen-1/-.git" target="_blank" rel="noopener noreferrer">Source Code</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 YOUSIVAR–Ω — Yousef Z. A. Shaheen. All rights reserved.</span>
+      <span class="footer-omega">Ω</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     JAVASCRIPT — embedded
+     ================================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ============================================================
+     CONFIGURATION
+     ============================================================ */
+  var CONFIG = {
+    brandImage: 'https://i.postimg.cc/W1VnzMxt/OOO.png',
+    audioUrl: 'https://files.catbox.moe/wn3h4d.m4a',
+    videoUrl: null,          // Set to a video URL to enable playback
+    apkUrl: null,            // Set to an APK download URL to enable download
+    apkVersion: null,        // Set to a version string when verified
+    supportUrl: null,        // Set to a donation/support URL to enable
+    repoUrl: 'https://github.com/Yousef-Shaheen-1/-.git',
+    docsUrl: 'https://github.com/Yousef-Shaheen-1/-.git'
+  };
+
+  var socialLinks = [
+    { platform: 'TikTok',    handle: '@zix8ii',      url: 'https://www.tiktok.com/@zix8ii?_r=1&_d=f3c01a6371bii9&sec_uid=', icon: 'tiktok' },
+    { platform: 'Facebook',  handle: 'Profile',      url: 'https://www.facebook.com/share/19u4QUKFTL/', icon: 'facebook' },
+    { platform: 'Snapchat',  handle: 'fi1_oo',       url: 'https://www.snapchat.com/add/fi1_oo?share_id=ez2rePla17Q&locale=ar-JO', icon: 'snapchat' },
+    { platform: 'Telegram',  handle: '@B0SS_S1',     url: 'https://t.me/B0SS_S1', icon: 'telegram' },
+    { platform: 'Instagram', handle: '55.0',         url: 'https://www.instagram.com/55.0?cplk=cGNucHY5bzlxYzl0', icon: 'instagram' },
+    { platform: 'WhatsApp',  handle: 'Chat',         url: 'https://wa.link/lc6f5w', icon: 'whatsapp' },
+    { platform: 'X',         handle: '@You_sh94',    url: 'https://x.com/You_sh94', icon: 'x' },
+    { platform: 'Threads',   handle: '@1.0_v_',      url: 'https://www.threads.com/@1.0_v_?invite=0', icon: 'threads' },
+    { platform: 'LinkedIn',  handle: 'Yousef Z.',    url: 'https://www.linkedin.com/in/yousef-z-445aba414?utm_source=share_via&utm_content=profile&utm_medium=member_android', icon: 'linkedin' },
+    { platform: 'Discord',   handle: 'Server',       url: 'https://discord.gg/kgwKFPTmZE', icon: 'discord' },
+    { platform: 'YouTube',   handle: '@shaheenos',   url: 'https://youtube.com/@shaheenos?si=zhAQOa0MO2K6jKiS', icon: 'youtube' }
+  ];
+
+  var emailContacts = [
+    { label: 'Gmail', address: 'shaheen.group000@gmail.com' },
+    { label: 'Yahoo', address: 'shaheen.group000@yahoo.com' }
+  ];
+
+  /* SVG icon paths for social platforms */
+  var socialIcons = {
+    tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43V8.69a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.04-.12z"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
+    snapchat: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.149-1.139.391-1.333.84-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.044.179-.089.36-.149.54-.075.255-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.78-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.24-.583-.404-.061-.18-.105-.36-.149-.54-.044-.195-.105-.479-.164-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.179-.345.224-.645.119-.869-.195-.434-.884-.676-1.332-.823-.121-.029-.24-.075-.346-.119-1.107-.435-1.257-.93-1.202-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.299 1.104.299.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.802 11.727.802l.419-.015h.06z"/></svg>',
+    telegram: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.387 4.025-1.627 4.476-1.635z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    threads: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.165-8.184-3.39-1.85-2.226-2.752-5.396-2.682-9.42.07-4.056 1.06-7.19 2.94-9.314C5.835-.249 8.601.004 8.714.018l.053.007h10.83v2.5h-2.333c.483.665.858 1.418 1.121 2.252.426 1.356.503 2.91.232 4.628-.546 3.818-2.792 6.265-6.02 6.682-1.452.186-2.69-.053-3.543-.395-.448 1.177-1.165 2.235-2.193 2.752-.41.224-.854.337-1.32.337-.238 0-.48-.033-.723-.099l.137-.04c.137-.04 3.37-1.06 4.27-4.672.04-.16.107-.31.196-.44.09-.13.2-.24.327-.33.127-.09.267-.155.415-.196.148-.04.302-.06.459-.06.157 0 .31.02.459.06.148.04.288.106.415.196.127.09.237.2.327.33.09.13.156.28.196.44.04.16.06.32.06.48 0 .16-.02.32-.06.48-.04.16-.107.31-.196.44-.09.13-.2.24-.327.33-.127.09-.267.155-.415.196z"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+    discord: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>'
+  };
+
+  /* ============================================================
+     FEATURE DATA
+     ============================================================ */
+  var featureData = {
+    'ai-intelligence': {
+      title: 'AI Intelligence',
+      description: 'Multi-model AI access with intelligent routing, streaming responses, and advanced generation controls — all within a refined conversation experience.',
+      items: [
+        { name: 'Multi-model AI access', status: 'available' },
+        { name: 'Supported AI provider integrations', status: 'configured' },
+        { name: 'Model selection', status: 'available' },
+        { name: 'Streaming responses', status: 'available' },
+        { name: 'Advanced generation controls', status: 'demo' },
+        { name: 'Conversation experience', status: 'available' }
+      ]
+    },
+    'model-routing': {
+      title: 'LiteLLM Gateway',
+      description: 'A unified model API architecture with virtual API keys, request routing, load balancing, and usage tracking. The gateway is part of the application architecture — this showcase does not run it.',
+      items: [
+        { name: 'Unified model API', status: 'planned' },
+        { name: 'Virtual API keys', status: 'planned' },
+        { name: 'Request routing', status: 'planned' },
+        { name: 'Load balancing', status: 'requires' },
+        { name: 'Usage tracking', status: 'planned' },
+        { name: 'Budget management', status: 'planned' },
+        { name: 'Provider integrations', status: 'requires' }
+      ]
+    },
+    'developer-tools': {
+      title: 'Developer Tools',
+      description: 'A developer-centric ecosystem with configurable tools, secret management, and automated build and release workflows where configured.',
+      items: [
+        { name: 'Compatible API integrations', status: 'configured' },
+        { name: 'Configurable tools', status: 'demo' },
+        { name: 'Secret management', status: 'requires' },
+        { name: 'Automated build & release', status: 'requires' },
+        { name: 'Developer tools panel', status: 'demo' }
+      ]
+    },
+    'attachments': {
+      title: 'Attachments & Productivity',
+      description: 'Conversation history, image and file attachments, document analysis, personal settings, and memory where implemented.',
+      items: [
+        { name: 'Conversation history', status: 'available' },
+        { name: 'Image attachments', status: 'available' },
+        { name: 'File attachments', status: 'available' },
+        { name: 'Document analysis', status: 'demo' },
+        { name: 'Personal settings', status: 'available' },
+        { name: 'Memory & notes', status: 'planned' }
+      ]
+    },
+    'extensions': {
+      title: 'Advanced Extensions',
+      description: 'Extensible capabilities including web search, document processing, data analysis, image generation, audio processing, and retrieval-augmented generation.',
+      items: [
+        { name: 'Web search', status: 'planned' },
+        { name: 'Document processing', status: 'demo' },
+        { name: 'Data analysis', status: 'planned' },
+        { name: 'Image generation', status: 'planned' },
+        { name: 'Audio processing', status: 'planned' },
+        { name: 'Retrieval-augmented generation', status: 'planned' },
+        { name: 'Extensible integrations', status: 'demo' }
+      ]
+    },
+    'mobile': {
+      title: 'Mobile Experience',
+      description: 'A native Android application with a responsive, touch-optimized interface designed for on-the-go AI interaction.',
+      items: [
+        { name: 'Android application', status: 'available' },
+        { name: 'Responsive interface', status: 'available' },
+        { name: 'Touch-optimized controls', status: 'available' },
+        { name: 'Mobile conversation sync', status: 'demo' },
+        { name: 'Offline capabilities', status: 'planned' }
+      ]
+    }
+  };
+
+  var statusLabels = {
+    available: 'Available',
+    configured: 'Configured',
+    demo: 'Demonstration',
+    planned: 'Planned',
+    requires: 'Requires Configuration'
+  };
+
+  /* ============================================================
+     INTRO OVERLAY
+     ============================================================ */
+  var introOverlay = document.getElementById('intro-overlay');
+  var introEnter = document.getElementById('intro-enter');
+  var introSkip = document.getElementById('intro-skip');
+  var audio = null;
+  var audioEnabled = false;
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function dismissIntro() {
+    introOverlay.classList.add('hidden');
+    setTimeout(function() { introOverlay.style.display = 'none'; }, 1100);
+  }
+
+  function tryPlayAudio() {
+    if (audio && !audioEnabled) {
+      audio.play().then(function() {
+        audioEnabled = true;
+        updateSoundIcon();
+      }).catch(function() {
+        // Autoplay blocked — user can toggle later
+      });
+    }
+  }
+
+  introEnter.addEventListener('click', function() {
+    if (!audio) {
+      audio = new Audio(CONFIG.audioUrl);
+      audio.loop = false;
+      audio.volume = 0.4;
+      audio.addEventListener('error', function() {
+        // Graceful — audio unavailable
+      });
+    }
+    tryPlayAudio();
+    dismissIntro();
+  });
+
+  introSkip.addEventListener('click', function() {
+    dismissIntro();
+  });
+
+  // Auto-dismiss intro after 6 seconds if no interaction (but don't auto-play audio)
+  setTimeout(function() {
+    if (!introOverlay.classList.contains('hidden')) {
+      dismissIntro();
+    }
+  }, 8000);
+
+  /* ============================================================
+     SOUND TOGGLE
+     ============================================================ */
+  var soundToggle = document.getElementById('sound-toggle');
+  var soundOnIcon = document.getElementById('sound-on-icon');
+  var soundOffIcon = document.getElementById('sound-off-icon');
+
+  function updateSoundIcon() {
+    if (audioEnabled) {
+      soundOnIcon.style.display = 'block';
+      soundOffIcon.style.display = 'none';
+    } else {
+      soundOnIcon.style.display = 'none';
+      soundOffIcon.style.display = 'block';
+    }
+  }
+
+  soundToggle.addEventListener('click', function() {
+    if (!audio) {
+      audio = new Audio(CONFIG.audioUrl);
+      audio.loop = false;
+      audio.volume = 0.4;
+      audio.addEventListener('error', function() {});
+    }
+    if (audioEnabled) {
+      audio.pause();
+      audioEnabled = false;
+    } else {
+      audio.play().then(function() {
+        audioEnabled = true;
+      }).catch(function() {
+        // Playback blocked
+      });
+    }
+    updateSoundIcon();
+  });
+
+  updateSoundIcon();
+
+  /* ============================================================
+     HEADER SCROLL + MOBILE NAV
+     ============================================================ */
+  var header = document.getElementById('header');
+  var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  var mobileNav = document.getElementById('mobile-nav');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  mobileMenuBtn.addEventListener('click', function() {
+    var isOpen = mobileNav.classList.toggle('open');
+    mobileMenuBtn.classList.toggle('open');
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  mobileNav.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mobileNav.classList.remove('open');
+      mobileMenuBtn.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ============================================================
+     MOUSE GLOW (desktop only, reduced-motion aware)
+     ============================================================ */
+  var mouseGlow = document.getElementById('mouse-glow');
+  var isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+  if (!isTouchDevice && !prefersReducedMotion) {
+    var glowX = 0, glowY = 0, targetX = 0, targetY = 0;
+    var glowVisible = false;
+
+    document.addEventListener('mousemove', function(e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!glowVisible) {
+        mouseGlow.style.opacity = '1';
+        glowVisible = true;
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function() {
+      mouseGlow.style.opacity = '0';
+      glowVisible = false;
+    });
+
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.08;
+      glowY += (targetY - glowY) * 0.08;
+      mouseGlow.style.transform = 'translate(' + glowX + 'px, ' + glowY + 'px) translate(-50%, -50%)';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+  }
+
+  // Pause heavy animations when page is hidden
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      document.body.style.animationPlayState = 'paused';
+    } else {
+      document.body.style.animationPlayState = 'running';
+    }
+  });
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  if (!prefersReducedMotion) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
+
+  /* ============================================================
+     FEATURE EXPLORER
+     ============================================================ */
+  var featureTabs = document.querySelectorAll('.feature-tab');
+  var featurePanelContent = document.getElementById('feature-panel-content');
+
+  function renderFeature(key) {
+    var data = featureData[key];
+    if (!data) return;
+
+    var itemsHtml = data.items.map(function(item) {
+      return '<div class="feature-item">' +
+        '<svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>' +
+        '<span class="name">' + item.name + '</span>' +
+        '<span class="status status-' + item.status + '">' + statusLabels[item.status] + '</span>' +
+      '</div>';
+    }).join('');
+
+    featurePanelContent.classList.remove('visible');
+
+    setTimeout(function() {
+      featurePanelContent.innerHTML =
+        '<h3>' + data.title + '</h3>' +
+        '<p>' + data.description + '</p>' +
+        '<div class="feature-list">' + itemsHtml + '</div>';
+      featurePanelContent.classList.add('visible');
+    }, 200);
+  }
+
+  featureTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      featureTabs.forEach(function(t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      renderFeature(tab.dataset.feature);
+    });
+  });
+
+  // Render initial feature
+  renderFeature('ai-intelligence');
+
+  /* ============================================================
+     INTERACTIVE CHAT DEMO
+     ============================================================ */
+  var chatBody = document.getElementById('chat-body');
+  var chatInput = document.getElementById('chat-input');
+  var chatSend = document.getElementById('chat-send');
+  var chatReset = document.getElementById('chat-reset');
+
+  var samplePrompts = [
+    'What makes YOUSIVAR–Ω different from other AI platforms?',
+    'Explain multi-model routing',
+    'What features are available now?'
+  ];
+
+  var sampleResponses = [
+    'YOUSIVAR–Ω unifies multiple AI models behind a single, refined interface. It offers multi-model access, streaming responses, conversation history, file attachments, and advanced generation controls — all designed with a focus on elegant interaction and developer flexibility. The platform routes requests intelligently across providers, manages usage, and maintains a seamless experience across desktop and mobile.',
+    'Multi-model routing allows YOUSIVAR–Ω to direct requests to the most suitable AI model based on context, capability, and configuration. This includes request routing, load balancing across providers, virtual API key management, and usage tracking — all managed through a unified API layer within the application architecture.',
+    'Currently available features include multi-model AI access, model selection, streaming responses, conversation history, image and file attachments, personal settings, and the Android application. Features in development include advanced generation controls, memory and notes, and enhanced document analysis.'
+  ];
+
+  var currentPromptIndex = 0;
+  var isTyping = false;
+
+  function clearChat() {
+    chatBody.innerHTML = '';
+  }
+
+  function addUserMessage(text) {
+    var msg = document.createElement('div');
+    msg.className = 'chat-msg user';
+    msg.textContent = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function addThinkingIndicator() {
+    var thinking = document.createElement('div');
+    thinking.className = 'chat-thinking';
+    thinking.id = 'chat-thinking';
+    thinking.innerHTML = '<span class="label">YOUSIVAR–Ω is thinking</span><span class="dots"><span></span><span></span><span></span></span>';
+    chatBody.appendChild(thinking);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function removeThinking() {
+    var thinking = document.getElementById('chat-thinking');
+    if (thinking) thinking.remove();
+  }
+
+  function addAIMessage(text, animated) {
+    var msg = document.createElement('div');
+    msg.className = 'chat-msg ai';
+    msg.innerHTML = '<div class="sender">YOUSIVAR–Ω</div><span class="content"></span>';
+    chatBody.appendChild(msg);
+    var contentEl = msg.querySelector('.content');
+
+    if (animated && !prefersReducedMotion) {
+      var i = 0;
+      var cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      contentEl.appendChild(cursor);
+
+      function typeNext() {
+        if (i < text.length) {
+          cursor.insertAdjacentText('beforebegin', text[i]);
+          i++;
+          chatBody.scrollTop = chatBody.scrollHeight;
+          setTimeout(typeNext, 15 + Math.random() * 20);
+        } else {
+          cursor.remove();
+        }
+      }
+      typeNext();
+    } else {
+      contentEl.textContent = text;
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  }
+
+  function runDemo() {
+    if (isTyping) return;
+    isTyping = true;
+    chatSend.disabled = true;
+
+    var promptText = chatInput.value.trim() || samplePrompts[currentPromptIndex % samplePrompts.length];
+    var responseText = sampleResponses[currentPromptIndex % sampleResponses.length];
+
+    addUserMessage(promptText);
+    chatInput.value = '';
+
+    setTimeout(function() {
+      addThinkingIndicator();
+
+      setTimeout(function() {
+        removeThinking();
+        addAIMessage(responseText, true);
+
+        setTimeout(function() {
+          isTyping = false;
+          chatSend.disabled = false;
+          currentPromptIndex++;
+        }, 500);
+      }, 1200);
+    }, 400);
+  }
+
+  chatSend.addEventListener('click', runDemo);
+  chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      runDemo();
+    }
+  });
+
+  chatReset.addEventListener('click', function() {
+    clearChat();
+    currentPromptIndex = 0;
+    isTyping = false;
+    chatSend.disabled = false;
+    chatInput.value = '';
+
+    // Re-add initial message
+    var initialMsg = document.createElement('div');
+    initialMsg.className = 'chat-msg user';
+    initialMsg.textContent = 'What makes YOUSIVAR–Ω different from other AI platforms?';
+    chatBody.appendChild(initialMsg);
+  });
+
+  /* ============================================================
+     VIDEO SHOWCASE
+     ============================================================ */
+  var videoPlayer = document.getElementById('video-player');
+  var videoPlaceholder = document.getElementById('video-placeholder');
+  var videoPlayBtn = document.getElementById('video-play-btn');
+  var videoFullscreenBtn = document.getElementById('video-fullscreen-btn');
+
+  if (CONFIG.videoUrl) {
+    videoPlayer.src = CONFIG.videoUrl;
+    videoPlayer.classList.add('active');
+    videoPlaceholder.style.display = 'none';
+    videoPlayBtn.disabled = false;
+    videoFullscreenBtn.disabled = false;
+
+    videoPlayBtn.addEventListener('click', function() {
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+      } else {
+        videoPlayer.pause();
+      }
+    });
+
+    videoFullscreenBtn.addEventListener('click', function() {
+      if (videoPlayer.requestFullscreen) {
+        videoPlayer.requestFullscreen();
+      } else if (videoPlayer.webkitRequestFullscreen) {
+        videoPlayer.webkitRequestFullscreen();
+      }
+    });
+  }
+
+  /* ============================================================
+     SOCIAL DIRECTORY
+     ============================================================ */
+  var socialGrid = document.getElementById('social-grid');
+  socialLinks.forEach(function(link) {
+    var card = document.createElement('a');
+    card.className = 'social-card';
+    card.href = link.url;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.setAttribute('aria-label', link.platform);
+
+    var iconSvg = socialIcons[link.icon] || '';
+    card.innerHTML =
+      '<div class="icon">' + iconSvg + '</div>' +
+      '<div class="info">' +
+        '<div class="platform">' + link.platform + '</div>' +
+        '<div class="handle">' + link.handle + '</div>' +
+      '</div>';
+
+    socialGrid.appendChild(card);
+  });
+
+  /* Email cards */
+  var emailGrid = document.getElementById('email-grid');
+  emailContacts.forEach(function(contact) {
+    var card = document.createElement('a');
+    card.className = 'email-card';
+    card.href = 'mailto:' + contact.address;
+    card.innerHTML =
+      '<div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg></div>' +
+      '<div class="info"><div class="label">' + contact.label + '</div><div class="address">' + contact.address + '</div></div>';
+    emailGrid.appendChild(card);
+  });
+
+  /* ============================================================
+     APK DOWNLOAD — configurable state
+     ============================================================ */
+  var downloadBtn = document.getElementById('download-btn');
+  var apkStatus = document.getElementById('apk-status');
+
+  if (CONFIG.apkUrl) {
+    downloadBtn.disabled = false;
+    downloadBtn.classList.remove('disabled-state');
+    downloadBtn.addEventListener('click', function() {
+      window.open(CONFIG.apkUrl, '_blank', 'noopener');
+    });
+    if (CONFIG.apkVersion) {
+      apkStatus.textContent = 'Version ' + CONFIG.apkVersion;
+      apkStatus.style.color = '#60b070';
+      apkStatus.style.borderColor = 'rgba(96,176,112,0.25)';
+      apkStatus.style.background = 'rgba(96,176,112,0.08)';
+    }
+  }
+
+  /* Support button — configurable state */
+  var supportBtn = document.getElementById('support-btn');
+  var supportStatus = document.getElementById('support-status');
+
+  if (CONFIG.supportUrl) {
+    supportBtn.disabled = false;
+    supportBtn.classList.remove('disabled-state');
+    supportBtn.addEventListener('click', function() {
+      window.open(CONFIG.supportUrl, '_blank', 'noopener');
+    });
+    supportStatus.textContent = 'Support Now';
+    supportStatus.style.color = '#60b070';
+    supportStatus.style.borderColor = 'rgba(96,176,112,0.25)';
+    supportStatus.style.background = 'rgba(96,176,112,0.08)';
+  }
+
+  /* ============================================================
+     IMAGE FALLBACK — graceful logo replacement
+     ============================================================ */
+  document.querySelectorAll('img[src="' + CONFIG.brandImage + '"]').forEach(function(img) {
+    img.addEventListener('error', function() {
+      img.style.display = 'none';
+      var parent = img.parentElement;
+      if (parent && !parent.querySelector('.logo-fallback')) {
+        var fallback = document.createElement('div');
+        fallback.className = 'logo-fallback';
+        fallback.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-display);color:var(--accent-silver);font-size:1.2rem;';
+        fallback.textContent = 'Ω';
+        parent.appendChild(fallback);
+      }
+    });
+  });
+
+  /* ============================================================
+     SMOOTH SCROLL — for anchor links
+     ============================================================ */
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (href === '#' || href.length < 2) return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var offset = 80;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
